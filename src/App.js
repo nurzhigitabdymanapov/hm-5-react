@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { Header } from "./Header/Header";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+  const [open, setOpen] = useState(false);
+  const addTodoHandler = (data) => {
+    setTodos([...todos, data]);
+  };
+
+  const click = () => {
+    setOpen(true);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header
+        addTodoHandler={addTodoHandler}
+        todos={todos}
+        opoenModalHandler={click}
+        open={open}
+        setOpen={setOpen}
+        setTodos={setTodos}
+      />
     </div>
   );
 }
